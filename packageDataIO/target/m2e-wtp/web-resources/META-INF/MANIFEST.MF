@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: lizhe
+Build-Jdk: 10.0.2
+Implementation-Title: packageDataIO Maven Webapp
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: Uango.com
+Implementation-URL: http://maven.apache.org
+Main-Class: com.service.MainApplicaitonClass
+Created-By: Maven Integration for Eclipse
+

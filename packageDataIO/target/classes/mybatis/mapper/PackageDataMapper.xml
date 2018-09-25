@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.PackageDataMapper" >
+  
+    <resultMap id="PackageDataResultMap" type="com.modelAndDomain.PackageData" >
+        <id column="UserNo" property="UserNo" jdbcType="VARCHAR" />
+        <result column="shippingCo" property="shippingCo" jdbcType="VARCHAR"/>
+        <result column="ShippingNo" property="ShippingNo" jdbcType="VARCHAR" />
+        <result column="RecipientFirstName" property="RecipientFirstName" jdbcType="VARCHAR" />
+        <result column="RecipientMiddleInitial" property="RecipientMiddleInitial" jdbcType="VARCHAR" />
+        <result column="RecipientLastName" property="RecipientLastName" jdbcType="VARCHAR" />
+        <result column="RecipientBusinessName" property="RecipientBusinessName" jdbcType="VARCHAR" />
+        <result column="RecipientAddress_Line_1" property="RecipientAddress_Line_1" jdbcType="VARCHAR" />
+        <result column="RecipientAddress_Line_2" property="RecipientAddress_Line_2" jdbcType="VARCHAR" />
+        <result column="RecipientAddress_Line_3" property="RecipientAddress_Line_3" jdbcType="VARCHAR" />
+        <result column="RecipientCity" property="RecipientCity" jdbcType="VARCHAR" />
+        <result column="RecipientProvince" property="RecipientProvince" jdbcType="VARCHAR" />
+        <result column="RecipientPostal_Code" property="RecipientPostal_Code" jdbcType="VARCHAR" />
+        <result column="RecipientCountry_Code" property="RecipientCountry_Code" jdbcType="VARCHAR" />
+        <result column="RecipientPhone" property="RecipientPhone" jdbcType="VARCHAR" />
+        <result column="RecipientEmail" property="RecipientEmail" jdbcType="VARCHAR" />
+        <result column="RecipientAddress_IsPOBox" property="RecipientAddress_IsPOBox" jdbcType="VARCHAR" />       
+       
+        <collection property="Item" resultMap="ItemResultMap"/>
+        
+     </resultMap>
+      <resultMap id="ItemResultMap" type="com.modelAndDomain.ItemData" >
+        <id column="ShippingNo" property="ShippingNo" jdbcType="VARCHAR" />
+        <result column="SKU" property="SKU" jdbcType="VARCHAR" />
+        <result column="UPC" property="UPC" jdbcType="VARCHAR" />
+        <result column="CommodityName" property="CommodityName" jdbcType="VARCHAR" />
+        <result column="ItemDescription" property="ItemDescription" jdbcType="VARCHAR"/>
+        <result column="CustomsDescription" property="CustomsDescription" jdbcType="VARCHAR" />
+        <result column="UnitValue" property="UnitValue" jdbcType="VARCHAR" />
+        <result column="ItemWeight" property="ItemWeight" jdbcType="VARCHAR" />
+        <result column="UnitOfItemWeight" property="UnitOfItemWeight" jdbcType="VARCHAR" />
+        <result column="Quantity" property="Quantity" jdbcType="VARCHAR" />
+        <result column="CountryOfOrigin" property="CountryOfOrigin" jdbcType="VARCHAR" />
+        <result column="HTSNumber" property="HTSNumber" jdbcType="VARCHAR" />
+        <result column="MultiSourceFlag" property="MultiSourceFlag" jdbcType="VARCHAR" />
+        <result column="Price" property="Price" jdbcType="VARCHAR" />
+        <result column="CurrencyType" property="CurrencyType" jdbcType="VARCHAR" />
+        <result column="PurchaseUrl" property="PurchaseUrl" jdbcType="VARCHAR" />
+        <result column="ImageUrl" property="ImageUrl" jdbcType="VARCHAR" />
+    </resultMap>
+    
+   
+    <sql id="Base_Column_List" >
+  UserNo,
+  ShippingNo,
+  RecipientFirstName,
+  RecipientMiddleInitial,
+  RecipientLastName,
+  RecipientBusinessName,
+  RecipientAddress_Line_1,
+  RecipientAddress_Line_2,
+  RecipientAddress_Line_3,
+  RecipientCity,
+  RecipientProvince,
+  RecipientPostal_Code,
+  RecipientCountry_Code,
+  RecipientPhone,
+  RecipientEmail,
+  RecipientAddress_IsPOBox,
+ 
+    </sql>
+ 
+  
+ 
+    <insert id="insert" parameterType="com.modelAndDomain.PackageData" >
+       INSERT INTO 
+       		test.packageData
+       		(userName,passWord,user_sex) 
+       	VALUES
+       		(#{userName}, #{passWord}, #{userSex})
+    </insert>
+    <update id="update" parameterType="com.modelAndDomain.PackageData" >
+       UPDATE 
+       		test.packageData
+       SET 
+       	<if test="userName != null">userName = #{userName},</if>
+       	<if test="passWord != null">passWord = #{passWord},</if>
+       	nick_name = #{nickName}
+       WHERE 
+       		id = #{id}
+       		
+    </update>
+    <delete id="delete" parameterType="java.lang.Long" >
+       DELETE FROM
+       		 test.packageData 
+       WHERE 
+       		 id =#{id}
+    </delete>
+      <select id="getAll" resultMap="PackageDataResultMap"  >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM test.packageData
+    </select>
+ 
+    <select id="getOne" parameterType="java.lang.Long" resultMap="PacakageDataResultMap" >
+        SELECT 
+       <include refid="Base_Column_List" />
+	   FROM test.packageData
+	   WHERE id = #{id}
+    </select>
+ 
+    
+    
+    
+    
+    
+ 
+</mapper>
